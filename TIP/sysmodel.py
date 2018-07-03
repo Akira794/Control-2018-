@@ -9,25 +9,25 @@ from control.matlab import *    # Load the controls systems library
 
 def system():
 # system parameters
-    M = 0.2  # 台車の質量 kg
+    M = 0.3  # 台車の質量 kg
     m = 0.2  # 振子の質量 kg
     l = 0.3  # 振子長の2分の1 m
-    J = 1/(12 * m * np.square(l))  # 振子の慣性モーメント kg・m^2
+    J = 1/12 * m * l**2  # 振子の慣性モーメント kg・m^2
     g = 9.81  # 重力加速度 m/s^2
 
-    alp = (M + m) * (J + m * np.square(l)) - np.square(m * l)
+    alp = (M + m) * (J + m * l**2) - (m * l)**2
 
-    A = np.array([[0, 0, 1, 0],
+    A = np.matrix([[0, 0, 1, 0],
                 [0, 0, 0, 1],
-                [0, -((np.square(m * l) * g) / alp), 0, 0],
+                [0, -(((m * l)**2 * g) / alp), 0, 0],
                 [0, ((M + m) * m * g * l) / alp, 0, 0]])
 
-    B = np.array([[0],
+    B = np.matrix([[0],
                  [0],
-                 [(J + m * (np.square(l))) / alp],
+                 [(J + m * (l**2)) / alp],
                  [-(m * l) / alp]])
 
-    C = np.array([[1, 0, 0, 1]])
+    C = np.matrix([[1, 0, 0, 1]])
 
     D = 0
 
