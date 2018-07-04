@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# 参照 http://takeshid.hatenadiary.jp/entry/2016/08/25/161203
 
 # 台車型倒立振子の最適レギュレータ設計
 
